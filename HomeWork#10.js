@@ -13,9 +13,10 @@ function calc(num1,num2,action)
             return num1 * num2;
         case '/':
             return num1 / num2;
+            default: console.log('ERROR');
     }
 }
-console.log(calc(5,3,'*'));
+console.log(calc(5,3,'7'));
 //3
 function one(x){
     return function two(y,z){
