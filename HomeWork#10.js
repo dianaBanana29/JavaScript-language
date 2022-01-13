@@ -24,3 +24,7 @@ return x + y + z;
     };
 }
 console.log(one(5)(3,4));
+//Yuriy's solution(task 2)
+function calculate(num1, num2, action) {
+    return action(num1, num2);
+}
