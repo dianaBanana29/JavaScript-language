@@ -15,8 +15,8 @@ function encode(num, codingString){
     return res;
 }
 function getSymbol(digit, codinString) {
-    let char = codinString[digit];
-    return "" + char;
+    
+    return codinString[digit];
 }
 
 }
