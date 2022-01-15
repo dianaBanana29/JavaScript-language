@@ -21,7 +21,7 @@ function stringProcessing(str){
     console.log(`substring of "${str}" beginning from index 2 to index 5 is "${strP.substring(2, 5)}"`);
     console.log(`index of substring "ll" in the "${str}"; last index of substring l in the "${str}" is "${strP.indexOf("ll")}; ${strP.lastIndexOf("ll")}`);
 }
-//stringProcessing("abcd lmn ll oo tt jj");
+stringProcessing("abcd lmn ll oo tt jj");
 
 /*********Home work 11
  * to write function 
@@ -34,7 +34,7 @@ function stringProcessing(str){
  * to do validation
  */
 
-function encode(num, base){
+/*function encode(num, base){
     //base from 2 to 10
     let res = "";
     do{
@@ -48,4 +48,4 @@ function encode(num, base){
 function getSymbol(digit) {
     return "" + digit//it will work only for base <=10
 }
-console.log(encode(10,2));
+console.log(encode(10,2));*/
