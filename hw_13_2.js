@@ -19,9 +19,9 @@ function MyMap(array, funct) {
     for(let i = 0; i < len; i++){
     newArray.push(funct(ar[i]));   
 }
-console.log(newArray);
+return newArray;
 }
-MyMap(ar, num => num * 2);
+console.log(MyMap(ar, num => num * 2));
 
 
 /****************Home work 13******************** 
