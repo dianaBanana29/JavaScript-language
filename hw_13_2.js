@@ -3,7 +3,7 @@ let ar = [10,11,12,13,14,15,16];
 function MyForEach(array, funct) {
     let len = array.length;
     for(let i = 0; i < len; i++){
-    funct(ar[i], i, array);
+    funct(array[i], i, array);
 }
 }
 
@@ -19,7 +19,7 @@ function MyMap(array, funct) {
     for(let i = 0; i < len; i++){
     newArray.push(funct(ar[i]));   
 }
-return newArray;
+    return newArray;
 }
 console.log(MyMap(ar, num => num * 2));
 
