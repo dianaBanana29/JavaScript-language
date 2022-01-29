@@ -32,3 +32,55 @@ const persons = [
  * 
  * **to move persons that don't live in Rehovot at the begining  of the array persons
  */
+
+/***********************class work 15 ********************* */
+
+//input: ["lmn", "d", "d", "lmn", "a", "lmn", "a", "b"]
+//output: lmn -> 3, a - 2, d - 2, bc - 1; 
+
+function displayOccurrences(array) {
+//creating object with key - element of array(string as an element of array)
+//value - occurrences count
+//difference between obj = {a : 123, d : "abc"}; const a = "d"; 
+//obj.a === 123, obj[a] === abc
+//obj.c = 10 -> {a : 123, d: "abc", c : 10}
+const res = {};
+for(let i = 0; i < array.length; i++) {
+    if(res[array[i]]=== undefined) {
+        //string as content of arrray[i] occurres first time
+        res[array[i]] = 1;
+    }
+    else{
+        res[array[i]] = res[array[i]] + 1;
+    }
+} 
+//console.log(res); 
+Object.entries(res).sort((e1, e2) => {
+    const res = e2[1] - e1[1];
+    return res === 0 ? e1[0].localeCompare(e2[0]) : res;
+}).forEach(e => console.log( `${e[0]} -> ${e[1]}`))
+
+}
+const ar5 = ["lmn", "d", "d", "lmn", "a", "lmn", "a", "b"];
+displayOccurrences(ar5);
+
+
+/*HomeWork 15*******************************************************
+                                task 1
+refactoring of displayOccurrence function
+ line  48 to 55 must be separated function
+ that separated function should apply standart methods like reduce
+
+                                 task 2
+    write useful function countBy(array, callback) that returns object
+     with keys as grouping  criteria and value as the occurrence counts 
+     keys should be sorted - optional
+     where array - any array, callback function - function< returning grupping criteria
+     const arr = ["6.4, 7.3, 6.5, 6.9"];
+     const statistic = countBy(arr, (element) => Math.floor(element) ) 
+     result: statistic -> {"6: 3, 7 : 1"} 
+     or  
+     const arr1 = ['abcd', 'lmnr', 'ab', 'dddd']      
+     const statistics = countBy(array, element => element.length)
+     result : statistics = {4 : 3, 2 : 1 }           
+*/
