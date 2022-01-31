@@ -15,9 +15,8 @@ function displayOccurrences(array) {
   }).forEach(e => console.log( `${e[0]} -> ${e[1]}`))
   }
 
-  function countBy(array, callback) {
+  /*function countBy(array, callback) {
    const res = {};
-    const sum = {};
     for(i = 0;i < array.length; i++) {
     res[array[i]] = callback(array[i], i, array);}
     
@@ -25,7 +24,12 @@ function displayOccurrences(array) {
       accum[curr] = (accum[curr] || []).concat(array[i]);
       return accum;
     }, {})
-  
+  return res;
+  }*/
+
+  function countByY(array, callback) {
+    array.map(callback);
+    return displayOccurrences(array);
   }
   
 
@@ -36,6 +40,7 @@ function displayOccurrences(array) {
   const ar = ["lmn", "d", "d", "lmn", "a", "lmn", "a", "b"];
   displayOccurrences(ar);
   const ar2 =  ['abcd', 'lmnr', 'ab', 'dddd'];
-  console.log(countBy(ar2,element => element.length));
+  //console.log(countBy(ar2,element => element.length));
+  console.log(countByY(ar2, element => element.length));
   
   
