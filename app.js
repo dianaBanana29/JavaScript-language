@@ -1,49 +1,29 @@
-const shape = {radius: 20, square: function(){
- return  3.14 * (this.radius ** 2)
-}, perimeter: () => 2 * 3.14 * this.radius, toString: function(){
-  return `radius of this circle is ${this.radius}`;
-}};
-console.log(shape.square());
-console.log(`square = ${shape.square()}, perimeter = ${shape.perimeter()}`);
-console.log(`shape: ${shape}`);
-const circle1 = {radius: 20, square: function(){
-  return  3.14 * (this.radius ** 2)
- }}
 
- class Circle {
-  constructor(radius) {
-    this.radius = radius;
-  }
-  square() {
-    3.14 * (this.radius ** 2);
-  }
-  perimeter() {
-    return 2 * 3.14 * this.radius;
-  }
-  toString() {
-    return `radius of this circle is ${this.radius}`;
-  }
+
+function MyArray(initialValue){
+  this.value = initialValue;
+  this.array = [];
 }
+MyArray.prototype.get = function(index){
 
-
- const circle10 = new Circle(10);
- /*****************************HomeWork 16*******************************
-  * output:
-  * 1.hello
-  * 2.a
-  * 3.b
-  */
- //Deferred.prototype.then = function(){
-   
-  //const res = 
-  //return res;
- //}
+return this.array[index]  ?? this.value;
+}
+MyArray.prototype.set = function(index, value){
+  return this.array[index] = value;
+}
+MyArray.prototype.setValue = function(value){
+  this.value = value;
+  this.array = [];
+}
+const myArray = new MyArray(10);
+myArray.set(20,0);
+console.log("should be 0", myArray.get(20));
 /*task 2
 to write constructor MyArray
 const MyArray = new MyArray(10);
 MyArray.get(index) - result 10;
 write method "get" getting an index value and returning common value(set in constructor)
-MyArray.set(index, value) (I think its method "replace")
+MyArray.set(index, value) (I think its method "splice")
 write method set that sets a given value at a given index
 myArray.setValue(value) - sets new value in all elements of myArray
 Example: 
@@ -55,10 +35,3 @@ console.log(myArray.get(100)) display - 500
 myArray.setValue(300)
 console.log(myArray.get(100)) display - 300
 */
-Array.prototype.filter = function(callbackPredicate) {
-  const res = [];
-this.forEach((n, i, a) => callbackPredicate(n, i, a) && res.push(n));
-return res;
-}
-const ar = [1, 2, 3, 4, 5, 6, 7];
-ar.filter(n => n % 2 === 0). forEach(n => console.log(n));
