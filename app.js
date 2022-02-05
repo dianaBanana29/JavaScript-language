@@ -1,37 +1,105 @@
+class Person{
+  #id;
+  #name;
+  constructor(id, name){
+    this.#id = id;
+    this.#name = name
+  }
+  getId(){
+    return this.#id;
+  }
+  getName(){
+    return this.#name;
+  }
+  toString(){
+    return   `id: ${this.#id}, name: ${this.#name},`;      //JSON.stringify(this); - for not private settings
+  }
+}
+const person = new Person(123, 'Vasya');
+console.log(`person is ${person}`);
+class Employee extends Person {
+  #salary;
+  constructor(id, name, salary){
+  super(id, name); // calls the constructor of class Person
+  this.#salary = salary;
+  }
+  computeSalary(){
+    return this.#salary
+  }
+  toString(){
+    return super.toString() + ` salary: ${this.computeSalary()}`;
+  }
+}
+const person2 = new Employee(124, "Sara", 16000);
+console.log(`person2 is: ${person2}`);
+console.log(typeof(person2));// just object
+console.log(person2.constructor.name)// only this way JS allows to get class name
+class Child extends Person{
+  #kinderGarden
+  constructor(id, name, kindergarden){
+    super(id, name);
+    this.#kinderGarden = kindergarden;
+  }
+  getKinderGarden(){
+    return this.#kinderGarden;
+  }
+  toString(){
+    return `${super.toString()} kindergarden: ${this.#kinderGarden}`;
+  }
+}
+const person3 = new Child(125, "Yakob", "shalom");
+console.log(`person3 is: ${person3}`);
+
+class WageEmployee extends Employee {
+  #hours;
+  #wage;
+  constructor(id, name, salary, hours, wage) {
+    super(id, name, salary);
+    this.#hours = hours;
+    this.#wage = wage;
+  }
+  computeSalary(){
+    return super.computeSalary() + this.#hours * this.#wage
+  }
+}
+const person4 = new WageEmployee(126, 'Asaf', 7000, 10, 1000);
+console.log(`person4 is; ${person4}`);
+
+ const persons = [
+ new Child(100, 'Pol', "Shalom"), new Child(101, "Sergey", "Boker"),
+ new Child(102, "Gabi", "Shalom"), new Employee(103, "Niv", 10000), 
+ new WageEmployee(104, "Nik", 10000, 10, 90)];
+   
+ 
+ console.log('********HOMEWORK**********');
+  //*************************1******************** */ 
+ function countOfType(persons, type){
+   const res = persons.reduce((sum, n )=> {n.constructor.name === type ? sum += 1: sum; return sum;}, 0);
+   return res;
+ //returns count of persons of the given type}
+ //Example: countOfPersonType(persons(its must be string), "WageEmployee") ----> 1
+ }
+ //**************************2********************** */
+ function computeSalaryBudget(persons){
+  return persons.filter(n => n.constructor.name !== "Child").reduce((sum, per) => sum + per.computeSalary(), 0); 
+  // return total salary of all employees in the given array}
+ // Example: computeSalaryBudget(persons) ----> 3000}
+   }
+   //*********************3************************ */
+   function countChildrenInGarden(persons, Garden){
+    return persons.reduce((res, per) => {per.constructor.name === "Child" 
+    && per.getKinderGarden() === Garden
+    && res++; 
+    return res}, 0)
+    //person.constructor.name === "Child" 
+  //&& person.getKinderGarden() === kinderGarden 
+  //&& sum++; 
+ //returns number of children in the given array}
+ // Example: countChildrenInGarden(persons, Shalom) ----> 2
+ }
 
 
-function MyArray(initialValue){
-  this.value = initialValue;
-  this.array = [];
-}
-MyArray.prototype.get = function(index){
-
-return this.array[index]  ?? this.value;
-}
-MyArray.prototype.set = function(index, value){
-  return this.array[index] = value;
-}
-MyArray.prototype.setValue = function(value){
-  this.value = value;
-  this.array = [];
-}
-const myArray = new MyArray(10);
-myArray.set(20,0);
-console.log("should be 0", myArray.get(20));
-/*task 2
-to write constructor MyArray
-const MyArray = new MyArray(10);
-MyArray.get(index) - result 10;
-write method "get" getting an index value and returning common value(set in constructor)
-MyArray.set(index, value) (I think its method "splice")
-write method set that sets a given value at a given index
-myArray.setValue(value) - sets new value in all elements of myArray
-Example: 
-const myArray = new MyArray(10);
-console.log(myArray.get(100)) display - 10
-myArray.set(100,500) sets 500 at index 100
-console.log(myArray.get(200)) display - 10
-console.log(myArray.get(100)) display - 500
-myArray.setValue(300)
-console.log(myArray.get(100)) display - 300
-*/
+//     TEST FUNCTIONALITY
+ console.log(countOfType(persons, "Child"));
+ console.log(`Salary Budget is: ${computeSalaryBudget(persons)}`);
+ console.log(`Children in garden are: ${countChildrenInGarden(persons, "Shalom")}`);
