@@ -89,9 +89,7 @@ console.log(`person4 is; ${person4}`);
     && per.getKinderGarden() === garden
     && res++; 
     return res}, 0)
-    //person.constructor.name === "Child" 
-  //&& person.getKinderGarden() === kinderGarden 
-  //&& sum++; 
+  
  //returns number of children in the given array}
  // Example: countChildrenInGarden(persons, Shalom) ----> 2
  }
