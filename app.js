@@ -80,7 +80,6 @@ console.log(`person4 is; ${person4}`);
   return persons.reduce((sum, per) => {per.constructor.name !== "Child" ? sum += per.computeSalary() : sum;
    
   return sum}, 0)
-  //return persons.filter(n => n.constructor.name !== "Child").reduce((sum, per) => sum + per.computeSalary(), 0); 
   // return total salary of all employees in the given array}
  // Example: computeSalaryBudget(persons) ----> 3000}
    }
