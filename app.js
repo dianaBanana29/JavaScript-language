@@ -65,11 +65,7 @@ class WageEmployee extends Employee {
 const person4 = new WageEmployee(126, 'Asaf', 7000, 10, 1000);
 console.log(`person4 is; ${person4}`);
 
- const persons = [
- new Child(100, 'Pol', "Shalom"), new Child(101, "Sergey", "Boker"),
- new Child(102, "Gabi", "Shalom"), new Employee(103, "Niv", 10000), 
- new WageEmployee(104, "Nik", 10000, 10, 90)];
-   
+ 
  
  console.log('********HOMEWORK**********');
   //*************************1******************** */ 
@@ -81,14 +77,17 @@ console.log(`person4 is; ${person4}`);
  }
  //**************************2********************** */
  function computeSalaryBudget(persons){
-  return persons.filter(n => n.constructor.name !== "Child").reduce((sum, per) => sum + per.computeSalary(), 0); 
+  return persons.reduce((sum, per) => {per.constructor.name !== "Child" ? sum += per.computeSalary() : sum;
+   
+  return sum}, 0)
+  //return persons.filter(n => n.constructor.name !== "Child").reduce((sum, per) => sum + per.computeSalary(), 0); 
   // return total salary of all employees in the given array}
  // Example: computeSalaryBudget(persons) ----> 3000}
    }
    //*********************3************************ */
-   function countChildrenInGarden(persons, Garden){
+   function countChildrenInGarden(persons, garden){
     return persons.reduce((res, per) => {per.constructor.name === "Child" 
-    && per.getKinderGarden() === Garden
+    && per.getKinderGarden() === garden
     && res++; 
     return res}, 0)
     //person.constructor.name === "Child" 
@@ -100,6 +99,12 @@ console.log(`person4 is; ${person4}`);
 
 
 //     TEST FUNCTIONALITY
- console.log(countOfType(persons, "Child"));
+const persons = [
+  new Child(100, 'Pol', "Shalom"), new Child(101, "Sergey", "Boker"),
+  new Child(102, "Gabi", "Shalom"), new Employee(103, "Niv", 10000), 
+  new WageEmployee(104, "Nik", 10000, 10, 90)];
+    
+
+ console.log(`Choosed type: ${countOfType(persons, "Child")}`);
  console.log(`Salary Budget is: ${computeSalaryBudget(persons)}`);
  console.log(`Children in garden are: ${countChildrenInGarden(persons, "Shalom")}`);
