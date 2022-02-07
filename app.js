@@ -72,24 +72,27 @@ console.log(`person4 is; ${person4}`);
  function countOfType(persons, type){
    const res = persons.reduce((sum, n )=> {n.constructor.name === type ? sum += 1: sum; return sum;}, 0);
    return res;
+   //return person.filter(p => p.constructor.name === name) <-----definition of Yuriy
  //returns count of persons of the given type}
  //Example: countOfPersonType(persons(its must be string), "WageEmployee") ----> 1
  }
  //**************************2********************** */
  function computeSalaryBudget(persons){
-  return persons.reduce((sum, per) => {per.constructor.name !== "Child" ? sum += per.computeSalary() : sum;
-   
-  return sum}, 0)
+  //return persons.reduce((sum, per) => {per.constructor.name !== "Child" ? sum += per.computeSalary() : sum;
+  //return sum}, 0)
+  const allEmloyees = persons.filter(p => p.computeSalary)
+  return allEmloyees.reduce((res, cur) => res + cur.computeSalary(),0) 
   // return total salary of all employees in the given array}
  // Example: computeSalaryBudget(persons) ----> 3000}
    }
    //*********************3************************ */
-   function countChildrenInGarden(persons, garden){
-    return persons.reduce((res, per) => {per.constructor.name === "Child" 
-    && per.getKinderGarden() === garden
-    && res++; 
-    return res}, 0)
-  
+   //function countChildrenInGarden(persons, garden){
+   // return persons.reduce((res, per) => {per.constructor.name === "Child" 
+   // && per.getKinderGarden() === garden
+    //&& res++; 
+    //return res}, 0)
+  const allChildren = getPersonsType(persons, 'Child');
+  return allChildren.reduce((res, cur) => cur.getKinderGarden() === kindergarden? res + 1 : res, 0)
  //returns number of children in the given array}
  // Example: countChildrenInGarden(persons, Shalom) ----> 2
  }
@@ -105,3 +108,22 @@ const persons = [
  console.log(`Choosed type: ${countOfType(persons, "Child")}`);
  console.log(`Salary Budget is: ${computeSalaryBudget(persons)}`);
  console.log(`Children in garden are: ${countChildrenInGarden(persons, "Shalom")}`);
+
+
+ function Deferred() {
+  this.functions = []
+}
+Deferred.prototype.then = function(thenFn) {
+  this.functions.push(thenFn);
+}
+Deferred.prototype.resolve = function(res) {
+  this.functions.forEach(fn => res = fn(res));
+
+}
+   const d = new Deferred()
+d.then(function(res){ console.log('1 ', res); return 'a'; });
+
+d.then(function(res){ console.log('2 ', res); return 'b'; });
+
+d.then(function(res){ console.log('3 ', res); return 'c'; });
+d.resolve('hello');
