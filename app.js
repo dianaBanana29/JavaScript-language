@@ -80,22 +80,25 @@ console.log(`person4 is; ${person4}`);
  function computeSalaryBudget(persons){
   //return persons.reduce((sum, per) => {per.constructor.name !== "Child" ? sum += per.computeSalary() : sum;
   //return sum}, 0)
-  const allEmloyees = persons.filter(p => p.computeSalary)
-  return allEmloyees.reduce((res, cur) => res + cur.computeSalary(),0) 
+  const allEmloyees = persons.filter(p => !!p.computeSalary);
+const salaryValues = allEmloyees.map(p => p.computeSalary());
+return salaryValues.reduce((res, cur)=> res = cur)
+  //const allEmloyees = persons.filter(p => p.computeSalary)
+  //return allEmloyees.reduce((res, cur) => res + cur.computeSalary(),0) <-----------Yuriy
   // return total salary of all employees in the given array}
  // Example: computeSalaryBudget(persons) ----> 3000}
    }
    //*********************3************************ */
-   //function countChildrenInGarden(persons, garden){
-   // return persons.reduce((res, per) => {per.constructor.name === "Child" 
-   // && per.getKinderGarden() === garden
-    //&& res++; 
-    //return res}, 0)
-  const allChildren = getPersonsType(persons, 'Child');
-  return allChildren.reduce((res, cur) => cur.getKinderGarden() === kindergarden? res + 1 : res, 0)
+   function countChildrenInGarden(persons, garden){
+   return persons.reduce((res, per) => {per.constructor.name === "Child" 
+   && per.getKinderGarden() === garden
+    && res++; 
+    return res}, 0)
+  //const allChildren = getPersonsType(persons, 'Child');
+  //return allChildren.reduce((res, cur) => cur.getKinderGarden() === kindergarden? res + 1 : res, 0) ---- > Yuriy
  //returns number of children in the given array}
  // Example: countChildrenInGarden(persons, Shalom) ----> 2
- //}
+ }
 
 
 //     TEST FUNCTIONALITY
@@ -127,3 +130,14 @@ d.then(function(res){ console.log('2 ', res); return 'b'; });
 
 d.then(function(res){ console.log('3 ', res); return 'c'; });
 d.resolve('hello');
+
+
+
+
+function testOutput(funct, expected){
+  console.log(`logging of parameter this`)
+console.log(`function ${funct.name}; expected result: ${expected} ; actual result : ${funct()}`)
+}
+//testOutput(WageEmployee.prototype.computeSalary.bind(person4), 2000)  //<----------------------------BIND
+testOutput(computeSalaryBudget.bind(undefined,persons))
+testOutput(countOfType.bind(undefined,persons, 'Child'))
