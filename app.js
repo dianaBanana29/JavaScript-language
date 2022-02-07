@@ -95,7 +95,7 @@ console.log(`person4 is; ${person4}`);
   return allChildren.reduce((res, cur) => cur.getKinderGarden() === kindergarden? res + 1 : res, 0)
  //returns number of children in the given array}
  // Example: countChildrenInGarden(persons, Shalom) ----> 2
- }
+ //}
 
 
 //     TEST FUNCTIONALITY
