@@ -34,3 +34,5 @@ funDisplayMixed(20);
  }
  point.method = displayPoinInSpace;
  point.method(10,20)
+
+ 
