@@ -1,38 +1,32 @@
-const point = {
-  x: 3,
-  y: 4
-};
-function displayPoinInSpace(z, t){
-//"this" is a reference to any object having properties x andn y
-console.log(`x: ${this.x}, y: ${this.y}, z: ${z}, t: ${t}`)
+function getRandomNumber(min, max) {
+  let float = min + Math.random() * (max + 1 - min);// for what to swap, if its works without?
+  return Math.round(float);
 }
-//displayPoinInSpace.call(point, 10, 20);
-//displayPoinInSpace.myBind(point, 10, 20)();
-//displayPoinInSpace.apply(point, [10, 20]);
 
-//arguments are passed at function call
+function getRandomNumber1(min, max) {
+  return min > max ? Math.floor(Math.random() * (min - max + 1)) + max : Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
-const funDisplay = displayPoinInSpace.myBind(point);
-funDisplay(10, 20);
-//all arguments are bound by the method myBind
-const funDisplayArguments = displayPoinInSpace.myBind(point, 10, 20);
-funDisplayArguments();
+function getRandomNumber2(min, max) {
+  if(min > max){[min, max] = [max, min]}
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
-//mixed - part of arguments are bound by the method myBind and other part of args passed at function call
-const funDisplayMixed = displayPoinInSpace.myBind(point, 10);
-funDisplayMixed(20);
+function concatinate(prefix) {
+//TODO
+// that by using the following code
+let str = '';
+return str += prefix;
+// there should be displayed out App-Test status: Done
+}
 
- Function.prototype.myBind = function(thisObj,...args){
-   //"this" - reference to any functional object(in example - displayPoint)
-   //thisObj - reference to any object(in example - point)
-   return (...params) => {
-    thisObj.method123 = this;
-    const res = thisObj.method123(...args.concat(params))
-    delete thisObj.method123;
-    return res;
-   }
- }
- point.method = displayPoinInSpace;
- point.method(10,20)
+// TEST FUNCTIONALITY
+function test() {
+const concatApp = concatinate('App - ')
+const concatMessage = concatApp + ('Test status: Done');
+console.log(concatMessage);
+console.log(getRandomNumber2(15, 1));
+console.log(getRandomNumber1(15, 1));
 
- 
+}
+test()
