@@ -13,20 +13,15 @@ function getRandomNumber2(min, max) {
 }
 
 function concatinate(prefix) {
-//TODO
-// that by using the following code
-let str = '';
-return str += prefix;
-// there should be displayed out App-Test status: Done
-}
+ return status =>  prefix + status;
+ }
 
 // TEST FUNCTIONALITY
 function test() {
-const concatApp = concatinate('App - ')
-const concatMessage = concatApp + ('Test status: Done');
-console.log(concatMessage);
 console.log(getRandomNumber2(15, 1));
-console.log(getRandomNumber1(15, 1));
-
+console.log(getRandomNumber1(15, 1)); 
+const concatApp = concatinate('App - ')
+const concatMessage = concatApp('Test status: Done');
+console.log(concatMessage);
 }
 test()
