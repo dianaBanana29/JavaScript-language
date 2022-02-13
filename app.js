@@ -10,7 +10,6 @@ function concatenate(prefix) {
 // TEST FUNCTIONALITY
 function test() {
 console.log(getRandomNumber2(15, 1));
-console.log(getRandomNumber1(15, 1)); 
 const concatApp = concatenate('App - ')
 const concatMessage = concatApp('Test status: Done');
 console.log(concatMessage);
