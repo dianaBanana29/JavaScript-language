@@ -6,6 +6,7 @@ function getRandomNumber2(min, max) {
 function concatenate(prefix) {
  return status =>  prefix + status;
  }
+ //return (...args) => [prefix, ...args].join(''); -----> Yuriy's defenition
 
 // TEST FUNCTIONALITY
 function test() {
